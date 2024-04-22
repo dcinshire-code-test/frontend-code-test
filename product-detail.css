@@ -166,7 +166,6 @@ h2 {
   color: var(--font-color-dark);
 }
 
-/* Media query for viewport width <= 768px */
 @media (max-width: 768px) {
   .container {
     width: 100%;

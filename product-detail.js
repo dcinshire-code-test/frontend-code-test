@@ -4,20 +4,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   );
   const product = await response.json();
 
-  document.querySelector(".product-name").innerText = product.title;
-  document.querySelector(".price").innerText = `$${product.price}`;
-  document.querySelector(".description").innerText = product.description;
-  document.querySelector(".image-container img").src = product.imageURL;
-  const sizeOptionsTemplate = document.querySelector(
-    "#size-option-template"
-  ).innerHTML;
-  const template = Handlebars.compile(sizeOptionsTemplate);
-
-  const renderedHtml = template({
-    sizeOptions: product.sizeOptions,
-  });
-
-  document.querySelector(".size-options").innerHTML = renderedHtml;
+  renderProductContent(product);
+  renderCartLink();
+  renderCartDetails(product.sizeOptions);
 
   document.querySelector(".add-cart-btn").addEventListener("click", () => {
     var selectedSize = document.querySelector('input[name="size"]:checked');
@@ -29,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     selectedSize.value;
     
     let cartDetails = JSON.parse(localStorage.getItem("cartDetails"));
+    // create or add the count to saved cart data
     if (!cartDetails) {
       cartDetails = {
         [selectedSize.value]: {
@@ -61,11 +51,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.querySelector(".my-cart-link").addEventListener("click", () => {
     document.querySelector('.mini-cart-container').classList.toggle("hidden")
   });
-
-  renderCartLink();
-  renderCartDetails(product.sizeOptions);
 });
 
+// mini cart dropdown menu
 document.addEventListener("click", (e) => {
   var myCartLink = document.querySelector(".my-cart-link");
   var miniCartContainer = document.querySelector(".mini-cart-container");
@@ -78,6 +66,23 @@ document.addEventListener("click", (e) => {
     miniCartContainer.classList.add("hidden")
   }
 });
+
+function renderProductContent(product) {
+  document.querySelector(".product-name").innerText = product.title;
+  document.querySelector(".price").innerText = `$${product.price}`;
+  document.querySelector(".description").innerText = product.description;
+  document.querySelector(".image-container img").src = product.imageURL;
+  const sizeOptionsTemplate = document.querySelector(
+    "#size-option-template"
+  ).innerHTML;
+  const template = Handlebars.compile(sizeOptionsTemplate);
+
+  const renderedHtml = template({
+    sizeOptions: product.sizeOptions,
+  });
+
+  document.querySelector(".size-options").innerHTML = renderedHtml;
+}
 
 function renderCartDetails(sizeOptions) {
   const cartDetails = JSON.parse(localStorage.getItem("cartDetails"));
