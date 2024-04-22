@@ -9,7 +9,9 @@ A simple solution to implement a Classic Tee product detail page.
 Features:
 1. Render the size options ratio group from the `product` API.
 2. Merge and save the cart items into local storage to mock calling backend to update cart.
-4. Responsive view for different devices.
+3. Mini cart preview.
+4. CSS variable to support potential theming.
+5. Responsive view for different devices.
 
 ### Libraries
 1. Handlebars. Render the dynamic ui component.
