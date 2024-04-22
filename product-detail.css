@@ -1,0 +1,129 @@
+:root {
+  --header-bg-color: #F6F6F7;
+  --font-color-dark: #222222;
+  --font-color-light: #888888;
+  --required-star: #C90000;
+}
+
+/* Media query for viewport width <= 768px */
+@media (max-width: 768px) {
+  main {
+    padding: 0 20px;
+  }
+}
+
+body {
+  margin: 0;
+  color: var(--font-color-dark);
+}
+
+.cart-details {
+  display: none;
+}
+.container {
+  width: 100%;
+  max-width: 1280px; /* Set maximum width to 768px */
+  margin: 0 auto
+
+}
+
+main {
+  padding: 20px; /* Optional: Add padding for better readability */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  grid-gap: 20px; /* Gap between grid items */
+}
+
+.image-container img {
+  height: 731px;
+}
+
+.invalid-size-msg {
+  display: none;
+  color: #C90000;
+}
+
+header {
+  background-color: var(--header-bg-color);
+}
+
+.cart {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  max-width: 1280px; /* Set maximum width to 768px */
+  padding: 5px;
+  margin: 0 auto
+}
+
+hr {
+  border-color: #FAFAFA;
+}
+
+.section {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--font-color-light);
+  padding: 12px 0;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.price {
+  font-weight: 700;
+  border-top: 1px;
+  border-bottom: 1px;
+  padding: 12px 0;
+}
+
+.size-label {
+  color: var(--font-color-light);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.required-mark {
+  color: var(--required-star);
+}
+
+.add-cart-btn {
+  padding: 10px 24px; 
+  background-color: #FFFFFF;
+  font-weight: 800;
+}
+
+.size-options input[type="radio"] {
+  display: none; /* Hide the default radio button */
+}
+
+.size-options label {
+  display: inline-block;
+  position: relative;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #222; /* Text color */
+  border: 1px solid #ccc; /* Border color */
+  margin-right: 5px;
+}
+
+.size-options input[type="radio"]:checked + label {
+  border: 0;
+}
+
+.size-options input[type="radio"]:checked + label::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: #222 2px solid;
+  margin-top: -2px;
+}
