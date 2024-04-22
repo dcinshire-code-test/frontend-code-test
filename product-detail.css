@@ -22,25 +22,26 @@ body {
 }
 .container {
   width: 100%;
-  max-width: 1280px; /* Set maximum width to 768px */
+  max-width: 960px; 
   margin: 0 auto
 
 }
 
 main {
-  padding: 20px; /* Optional: Add padding for better readability */
+  padding: 20px; 
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
-  grid-gap: 20px; /* Gap between grid items */
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px; 
 }
 
 .image-container img {
-  height: 731px;
+  height: 650px;
 }
 
 .invalid-size-msg {
-  display: none;
-  color: #C90000;
+  color: var(--required-star);
+  font-size: 12px;
+  margin-top: 0;
 }
 
 header {
@@ -51,13 +52,9 @@ header {
   display: flex;
   justify-content: end;
   width: 100%;
-  max-width: 1280px; /* Set maximum width to 768px */
-  padding: 5px;
+  max-width: 1280px;
+  padding: 8px;
   margin: 0 auto
-}
-
-hr {
-  border-color: #FAFAFA;
 }
 
 .section {
@@ -77,9 +74,7 @@ h2 {
 }
 
 .price {
-  font-weight: 700;
-  border-top: 1px;
-  border-bottom: 1px;
+  /* font-weight: 700; */
   padding: 12px 0;
 }
 
@@ -97,19 +92,27 @@ h2 {
   padding: 10px 24px; 
   background-color: #FFFFFF;
   font-weight: 800;
+  transition: background-color 0.2s, color 0.2s; 
+  cursor: pointer;
+}
+
+.add-cart-btn:hover {
+  background-color: #000000;
+  color: #FFFFFF;
 }
 
 .size-options input[type="radio"] {
-  display: none; /* Hide the default radio button */
+  display: none;
 }
 
 .size-options label {
   display: inline-block;
   position: relative;
-  padding: 10px 20px;
+  padding: 10px 16px;
+  font-size: 12px;
   cursor: pointer;
-  color: #222; /* Text color */
-  border: 1px solid #ccc; /* Border color */
+  color: var(--font-color-light);
+  border: 1px solid #ccc;
   margin-right: 5px;
 }
 
@@ -124,6 +127,46 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  border: #222 2px solid;
+  border: #222222 2px solid;
   margin-top: -2px;
+}
+
+.mini-cart {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 5px;
+  width: 340px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.mini-cart .image-container {
+  padding: 0 15px;
+}
+
+.mini-cart img {
+  max-width: 100%;
+  height: auto;
+}
+
+.mini-cart-container {
+  position: absolute;
+  background-color: #FFFFFF;
+  border: 1px var(--header-bg-color) solid;
+  top: 35px;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.my-cart-link {
+  text-decoration: none;
+  color: var(--font-color-light);
+  font-size: 12px;
+}
+
+.selected-size {
+  color: var(--font-color-dark);
 }

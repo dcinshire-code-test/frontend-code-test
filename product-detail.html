@@ -12,9 +12,9 @@
 <body>
   <header>
     <div class="cart">
-      <a href="javascript:void(0)" class="my-cart-link">My Cart()</a>
+      <a href="javascript:void(0)" class="my-cart-link"></a>
       <i class="fa-solid fa-cart-shopping"></i>
-      <div class="cart-details"></div>
+      <div class="mini-cart-container hidden"></div>
     </div>
   </header>
   <div class="container">
@@ -24,12 +24,12 @@
       </div>
       <div class="content">
         <h2 class="product-name section"></h2>
-        <div class="price section"></div>
+        <strong class="price section"></strong>
         <div class="description"></div>
-        <p class="section size-label">SIZE<span class="required-mark">*</span> <span id="selected-size"></span></p>
+        <p class="section size-label">SIZE<span class="required-mark">*</span> <span class="selected-size"></span></p>
         <div class="size-options section"></div>
         <button class="add-cart-btn section">ADD TO CART</button>
-        <p class="invalid-size-msg">Please choose a size.</p>
+        <p class="invalid-size-msg hidden">Please choose a size.</p>
       </div>
     </main>
   </div>
@@ -41,16 +41,17 @@
     {{/each}}
   </script>
 
-  <script id="cart-details-template" type="text/x-handlebars-template">
+  <script id="mini-cart-template" type="text/x-handlebars-template">
     {{#each cartDetails}}
-    <div>
+    <div class="mini-cart">
       <div class="image-container">
         <img src="{{this.imageUrl}}" alt="product image">
       </div>
       <div class="cart-detail">
         <div class="cart-title">{{this.title}}</div>
-        <div class="price">{{this.count}} x ${{this.price}}</div>
-        <div class="cart-size">Size: {{this.size}}</div>
+        <div class="price">{{this.count}} x <strong>${{this.price}}</strong></div>
+        <div class="cart-size">Size: {{this.label}}</div>
+      </div>
     </div>
     {{/each}}
   </script>
