@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector('.invalid-size-msg').classList.add("hidden");
     selectedSize.value;
     
-    let cartDetails = JSON.parse(sessionStorage.getItem("cartDetails"));
+    let cartDetails = JSON.parse(localStorage.getItem("cartDetails"));
     if (!cartDetails) {
       cartDetails = {
         [selectedSize.value]: {
@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       cartDetails[selectedSize.value].count += 1;
     }
-    sessionStorage.setItem("cartDetails", JSON.stringify(cartDetails));
-    renderCartDetails();
+    localStorage.setItem("cartDetails", JSON.stringify(cartDetails));
     renderCartLink();
+    renderCartDetails(product.sizeOptions);
   });
 
   document.querySelectorAll('input[name="size"]').forEach((button) => button.addEventListener("change", (e) => {
@@ -71,18 +71,16 @@ document.addEventListener("click", (e) => {
   var miniCartContainer = document.querySelector(".mini-cart-container");
   var target = e.target;
   
-  // Check if the clicked element is the dropdown button or within the dropdown content
-  var isMyCartLink = target == myCartLink;
+  var isMyCartLink = myCartLink.contains(target);
   var isInMiniCart = miniCartContainer.contains(target);
   
-  // If the clicked element is not the dropdown button or within the dropdown content, hide the dropdown
   if (!isMyCartLink && !isInMiniCart) {
     miniCartContainer.classList.add("hidden")
   }
 });
 
 function renderCartDetails(sizeOptions) {
-  const cartDetails = JSON.parse(sessionStorage.getItem("cartDetails"));
+  const cartDetails = JSON.parse(localStorage.getItem("cartDetails"));
   if (!cartDetails) {
     return;
   }
@@ -104,12 +102,12 @@ function renderCartDetails(sizeOptions) {
 
 function renderCartLink() {
   let count = 0;
-  const cartDetails = JSON.parse(sessionStorage.getItem("cartDetails"));
+  const cartDetails = JSON.parse(localStorage.getItem("cartDetails"));
   if (cartDetails) {
     for (var key of Object.keys(cartDetails)) {
       count += cartDetails[key].count;
     }
   }
 
-  document.querySelector(".my-cart-link").innerText = `My Cart(${count})`;
+  document.querySelector("#cart-count").innerText = `(${count})`;
 }
